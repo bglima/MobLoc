@@ -6,4 +6,9 @@
     <string name="main_option_2">Open all previous saved texts</string>
     <string name="main_option_3">View magnetometer readings</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_text_save">text_save</string>
+
+    <string name="type_description">Please, type some text below:</string>
+    <string name="add_button">Add to history</string>
+
 </resources>
