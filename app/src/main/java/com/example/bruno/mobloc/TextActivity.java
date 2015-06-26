@@ -2,17 +2,35 @@ package com.example.bruno.mobloc;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
 
 
-public class text_save extends Activity {
+public class TextActivity extends Activity {
+
+    private static final String TEXT_SAVED = "TEXT_SAVED";
+    private String textToAdd;
+    EditText editText;
+    Button addButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_text_save);
+
+        editText = (EditText) findViewById(R.id.descTextView);
+        addButton = (Button) findViewById(R.id.addButton);
     }
+
+    public void saveText(){
+       Data.writeString(editText.getText().toString());
+    }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
