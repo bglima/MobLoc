@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">MobLoc</string>
+
+    <string name="main_message">Choose one option!</string>
+    <string name="main_option_1">Write and save a text</string>
+    <string name="main_option_2">Open all previous saved texts</string>
+    <string name="main_option_3">View magnetometer readings</string>
+    <string name="action_settings">Settings</string>
+</resources>
