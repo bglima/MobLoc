@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -22,12 +24,13 @@ public class TextActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_text_save);
 
-        editText = (EditText) findViewById(R.id.descTextView);
+        editText = (EditText) findViewById(R.id.descTextEdit);
         addButton = (Button) findViewById(R.id.addButton);
     }
 
-    public void saveText(){
-       Data.writeString(editText.getText().toString());
+    public void saveText(View view){
+        (Data.getInstance()).writeString(editText.getText().toString());
+        Log.w("Hi", (editText.getText().toString()) );
     }
 
 
