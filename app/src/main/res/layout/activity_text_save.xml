@@ -19,8 +19,8 @@
     <EditText
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:id="@+id/editText"
-        android:layout_below="@+id/descTextView"
+        android:id="@+id/descTextEdit"
+        android:layout_below="@id/descriptionTextView"
         android:layout_marginTop="15dp"
         android:layout_centerHorizontal="true"
         android:hint="@string/text_hint" />
@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:text="@string/add_button"
         android:id="@+id/addButton"
-        android:layout_below="@+id/editText"
+        android:layout_below="@id/descTextEdit"
         android:layout_centerHorizontal="true"
         android:onClick="saveText"
         />

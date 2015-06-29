@@ -15,12 +15,11 @@ public final class R {
         public static final int activity_vertical_margin=0x7f050001;
     }
     public static final class id {
-        public static final int action_settings=0x7f080008;
-        public static final int addButton=0x7f080007;
+        public static final int action_settings=0x7f080007;
+        public static final int addButton=0x7f080006;
         public static final int buttonSensor=0x7f080003;
-        public static final int descTextView=0x7f080006;
+        public static final int descTextEdit=0x7f080005;
         public static final int descriptionTextView=0x7f080004;
-        public static final int editText=0x7f080005;
         public static final int mainTextView=0x7f080000;
         public static final int openButton=0x7f080002;
         public static final int saveButton=0x7f080001;
