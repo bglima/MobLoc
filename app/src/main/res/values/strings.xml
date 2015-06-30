@@ -11,5 +11,8 @@
     <string name="type_description">Please, type some text below:</string>
     <string name="text_hint">Type something to be added to history here...</string>
     <string name="add_button">Add to history</string>
+    <string name="title_activity_read_sensor">ReadSensorActivity</string>
+
+    <string name="hello_world">Hello world!</string>
 
 </resources>

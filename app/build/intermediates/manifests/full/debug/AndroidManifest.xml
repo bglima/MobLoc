@@ -32,6 +32,10 @@
             android:name="com.example.bruno.mobloc.OpenTextActivity"
             android:label="@string/app_name" >
         </activity>
+        <activity
+            android:name="com.example.bruno.mobloc.ReadSensorActivity"
+            android:label="@string/title_activity_read_sensor" >
+        </activity>
     </application>
 
 </manifest>

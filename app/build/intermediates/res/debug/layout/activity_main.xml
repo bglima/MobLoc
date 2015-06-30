@@ -41,7 +41,8 @@
         android:text="@string/main_option_3"
         android:id="@+id/buttonSensor"
         android:layout_below="@+id/openButton"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="clickSensorRead"/>
 
 </RelativeLayout>
 <!-- From: file:/E:/Git/MobLoc/app/src/main/res/layout/activity_main.xml -->
