@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <TextView
+        android:layout_width="284dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Below there is the log of previous text..."
+        android:id="@+id/textView"
+        android:gravity="center_horizontal"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp" />
+
+    <ScrollView android:id="@+id/textAreaScroller"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="308dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="30dp"
+        >
+        <TextView
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/openTextView"
+            android:hint="There is no previous text added."
+            android:gravity="center|left"
+            android:scrollbars = "vertical"
+            android:textSize="10dp"
+            android:nestedScrollingEnabled="true"
+            android:enabled="true"
+            android:maxLines="22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </ScrollView>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Clear Log"
+        android:id="@+id/clearBtn"
+        android:layout_gravity="center_horizontal"
+        android:onClick="clearLog"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Exit"
+        android:id="@+id/exitBtn"
+        android:layout_gravity="center_horizontal"
+        android:onClick="exit"/>
+</LinearLayout>

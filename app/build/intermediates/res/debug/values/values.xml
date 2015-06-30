@@ -14,7 +14,7 @@
     <string name="main_option_2">Open all previous saved texts</string>
     <string name="main_option_3">View magnetometer readings</string>
     <string name="text_hint">Type something to be added to history here...</string>
-    <string name="title_activity_text_save">text_save</string>
+    <string name="title_activity_text_save">MobLoc</string>
     <string name="type_description">Please, type some text below:</string>
     <!-- From: file:/E:/Git/MobLoc/app/src/main/res/values/styles.xml -->
     <eat-comment/>

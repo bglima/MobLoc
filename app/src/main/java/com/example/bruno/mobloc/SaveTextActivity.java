@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 
-public class TextActivity extends Activity {
+public class SaveTextActivity extends Activity {
 
     private static final String TEXT_SAVED = "TEXT_SAVED";
     private String textToAdd;
@@ -30,7 +30,8 @@ public class TextActivity extends Activity {
 
     public void saveText(View view){
         (Data.getInstance()).writeString(editText.getText().toString());
-        Log.w("Hi", (editText.getText().toString()) );
+        editText.getSelectionEnd();
+        Log.w("Text added...", (editText.getText().toString()) );
     }
 
 

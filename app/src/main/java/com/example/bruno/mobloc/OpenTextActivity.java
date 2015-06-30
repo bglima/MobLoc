@@ -1,38 +1,55 @@
 package com.example.bruno.mobloc;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
-
-public class MainActivity extends Activity {
+/**
+ * Created by Bruno on 6/30/2015.
+ */
+public class OpenTextActivity extends Activity {
+    TextView textArea;
+    Button clearBtn;
+    Button exitBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_text_open);
+
+        textArea = (TextView) findViewById(R.id.openTextView);
+        clearBtn = (Button) findViewById(R.id.clearBtn);
+        exitBtn = (Button) findViewById(R.id.exitBtn);
+
+        textArea.setMovementMethod(new ScrollingMovementMethod());
+        updateTextArea();
+
     }
 
-    public void clickSaveText(View view)
-    {
-        Intent intent = new Intent(MainActivity.this, SaveTextActivity.class);
-        startActivity(intent);
+    public void updateTextArea(){
+        textArea.setText((Data.getInstance()).returnTextData());
     }
 
-    public void clickOpenText(View view)
-    {
-        Intent intent = new Intent(MainActivity.this, OpenTextActivity.class);
-        startActivity(intent);
+    public void clearLog(View view){
+        (Data.getInstance()).cleanFile();
+        updateTextArea();
     }
 
+    public void exit(View view){
+        finish();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_text_save, menu);
         return true;
     }
 

@@ -24,7 +24,7 @@
         android:layout_below="@+id/mainTextView"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="77dp"
-        android:onClick="openSaveActivity"/>
+        android:onClick="clickSaveText"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -32,7 +32,8 @@
         android:text="@string/main_option_2"
         android:id="@+id/openButton"
         android:layout_below="@+id/saveButton"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="clickOpenText"/>
 
     <Button
         android:layout_width="wrap_content"

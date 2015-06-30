@@ -25,8 +25,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.bruno.mobloc.TextActivity"
-            android:label="@string/title_activity_text_save" >
+            android:name="com.example.bruno.mobloc.SaveTextActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.example.bruno.mobloc.OpenTextActivity"
+            android:label="@string/app_name" >
         </activity>
     </application>
 
