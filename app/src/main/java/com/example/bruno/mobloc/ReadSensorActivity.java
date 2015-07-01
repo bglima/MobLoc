@@ -9,6 +9,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
 import org.achartengine.ChartFactory;
+import org.achartengine.GraphicalView;
 import org.achartengine.chart.PointStyle;
 import org.achartengine.model.XYMultipleSeriesDataset;
 import org.achartengine.model.XYSeries;
@@ -29,15 +31,43 @@ import java.util.ArrayList;
 public class ReadSensorActivity extends Activity implements SensorEventListener, View.OnClickListener {
     private Button startBtn, stopBtn, uploadBtn;
     private LinearLayout layout;
+    private static GraphicalView view;
+
     private SensorManager sensorManager;
     private boolean started = false;
     private ArrayList <MagnetData> sensorData;
     private View mChart;
+    private LineGraph lineGraph;
+    private static Thread thread;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read_sensor);
+
+
+        thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0; i < 15 && started; i++) {
+                    try  {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    lineGraph.addNewPoints(100);
+                    view.repaint();
+                }
+            }
+        });
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+
 
         layout = (LinearLayout) findViewById(R.id.chart_container);
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
@@ -55,11 +85,21 @@ public class ReadSensorActivity extends Activity implements SensorEventListener,
         if(sensorData == null || sensorData.size() == 0) {
             uploadBtn.setEnabled(false);
         }
+
+
+        lineGraph = new LineGraph();
+
+        view = lineGraph.getView(this);
+        layout.addView(view);
+        view.repaint();
     }
 
     @Override
     protected void onResume(){
+
         super.onResume();
+
+
     }
 
     @Override
@@ -100,11 +140,11 @@ public class ReadSensorActivity extends Activity implements SensorEventListener,
                 startBtn.setEnabled(false);
                 stopBtn.setEnabled(true);
                 uploadBtn.setEnabled(false);
-                sensorData = new ArrayList();
                 // save previous data if avaliable...
                 started = true;
                 Sensor magnet = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
-                sensorManager.registerListener(this, magnet, SensorManager.SENSOR_DELAY_FASTEST);
+                sensorManager.registerListener(this, magnet, SensorManager.SENSOR_DELAY_NORMAL);
+                thread.start();
                 break;
             case R.id.stopBtn:
                 // stop reading
@@ -113,10 +153,8 @@ public class ReadSensorActivity extends Activity implements SensorEventListener,
                 uploadBtn.setEnabled(true);
                 started = false;
                 sensorManager.unregisterListener(this);
-                layout.removeAllViews();
-                openChart();
-
                 // show data in chart
+
                 break;
             case R.id.uploadButton:
                 // upload data to server
@@ -129,89 +167,13 @@ public class ReadSensorActivity extends Activity implements SensorEventListener,
 
     private void openChart(){
         if (sensorData != null || sensorData.size() > 0) {
-            long t = sensorData.get(0).getTimeStamp();
-            XYMultipleSeriesDataset dataset = new XYMultipleSeriesDataset();
-
-            XYSeries xSeries = new XYSeries("X");
-            XYSeries ySeries = new XYSeries("Y");
-            XYSeries zSeries = new XYSeries("Z");
-
-            for (Object data : sensorData) {
-
-                xSeries.add( ((MagnetData) (data)).getTimeStamp() - t,((MagnetData) (data)).getX());
-                ySeries.add( ((MagnetData) (data)).getTimeStamp() - t, ((MagnetData) (data)).getY());
-                zSeries.add( ((MagnetData) (data)).getTimeStamp() - t, ((MagnetData) (data)).getZ());
-            }
-
-            dataset.addSeries(xSeries);
-            dataset.addSeries(ySeries);
-            dataset.addSeries(zSeries);
-
-            XYSeriesRenderer xRenderer = new XYSeriesRenderer();
-            xRenderer.setColor(Color.RED);
-            xRenderer.setPointStyle(PointStyle.CIRCLE);
-            xRenderer.setFillPoints(true);
-            xRenderer.setLineWidth(1);
-            xRenderer.setDisplayChartValues(false);
-
-            XYSeriesRenderer yRenderer = new XYSeriesRenderer();
-            yRenderer.setColor(Color.GREEN);
-            yRenderer.setPointStyle(PointStyle.CIRCLE);
-            yRenderer.setFillPoints(true);
-            yRenderer.setLineWidth(1);
-            yRenderer.setDisplayChartValues(false);
-
-            XYSeriesRenderer zRenderer = new XYSeriesRenderer();
-            zRenderer.setColor(Color.BLUE);
-            zRenderer.setPointStyle(PointStyle.CIRCLE);
-            zRenderer.setFillPoints(true);
-            zRenderer.setLineWidth(1);
-            zRenderer.setDisplayChartValues(false);
-
-            XYMultipleSeriesRenderer multiRenderer = new XYMultipleSeriesRenderer();
-            multiRenderer.setXLabels(0);
-            multiRenderer.setLabelsColor(Color.RED);
-            multiRenderer.setChartTitle("t vs (x,y,z)");
-            multiRenderer.setXTitle("Sensor Data");
-            multiRenderer.setYTitle("Values of Magnetometer");
-
-            multiRenderer.setAxisTitleTextSize(25);
-            multiRenderer.setZoomButtonsVisible(true);
-            multiRenderer.setChartTitleTextSize(25);
-            multiRenderer.setAxisTitleTextSize(25);
-
-            for (int i = 0; i < sensorData.size(); i++) {
-
-                multiRenderer.addXTextLabel(i + 1, "" + (sensorData.get(i).getTimeStamp()  - t));
-            }
-            for (int i = 0; i < 12; i++) {
-                multiRenderer.addYTextLabel(i + 1, ""+i);
-            }
-
-            multiRenderer.addSeriesRenderer(xRenderer);
-            multiRenderer.addSeriesRenderer(yRenderer);
-            multiRenderer.addSeriesRenderer(zRenderer);
-
-            // Getting a reference to LinearLayout of the MainActivity Layout
-
-            // Creating a Line Chart
-            mChart = ChartFactory.getLineChartView(getBaseContext(), dataset,
-                    multiRenderer);
-
-            // Adding the Line Chart to the LinearLayout
-            layout.addView(mChart);
 
         }
     }
     @Override
     public void onSensorChanged(SensorEvent event) {
         if (started) {
-            double x = event.values[0];
-            double y = event.values[1];
-            double z = event.values[2];
-            long timeStamp = System.currentTimeMillis();
-            MagnetData data = new MagnetData(timeStamp, x, y, z);
-            sensorData.add(data);
+
         }
     }
 
