@@ -4,16 +4,16 @@ package com.example.bruno.mobloc;
  * Created by Bruno on 6/30/2015.
  */
 public class MagnetData {
-    private long timeStamp;
+    private String timeStamp;
     private double x;
     private double y;
     private double z;
 
-    public long getTimeStamp() {
+    public String getTimeStamp() {
         return timeStamp;
     }
 
-    public void setTimeStamp(long timeStamp) {
+    public void setTimeStamp(String timeStamp) {
         this.timeStamp = timeStamp;
     }
 
@@ -41,7 +41,7 @@ public class MagnetData {
         this.z = z;
     }
 
-    public MagnetData(long timeStamp, double x, double y, double z) {
+    public MagnetData(String timeStamp, double x, double y, double z) {
         this.timeStamp = timeStamp;
         this.x = x;
         this.y = y;

@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 
 /**
@@ -17,8 +18,8 @@ import android.widget.TextView;
 public class OpenTextActivity extends Activity {
     TextView textArea;
     Button clearBtn;
-    Button exitBtn;
-
+    Switch switchDataType;
+    View view;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,27 +27,36 @@ public class OpenTextActivity extends Activity {
 
         textArea = (TextView) findViewById(R.id.openTextView);
         clearBtn = (Button) findViewById(R.id.clearBtn);
-        exitBtn = (Button) findViewById(R.id.exitBtn);
+        switchDataType = (Switch) findViewById(R.id.switchData);
 
         textArea.setMovementMethod(new ScrollingMovementMethod());
-        updateTextArea();
-
+        view = findViewById(R.id.mainTextView);
+        updateTextArea(view);
     }
 
-    public void updateTextArea(){
-        textArea.setText((Data.getInstance()).returnTextData());
+    public void updateTextArea(View view){
+        if(switchDataType.isChecked() ) {
+            textArea.setText((Data.getInstance()).returnTextData());
+            switchDataType.setChecked(false);
+        } else {
+            textArea.setText((Data.getInstance()).returnMagnetData());
+            switchDataType.setChecked(true);
+        }
+
     }
 
     public void clearLog(View view){
-        (Data.getInstance()).cleanFile();
-        updateTextArea();
+        if(switchDataType.isChecked() ) {
+            (Data.getInstance()).cleanFile(1);
+        } else {
+            (Data.getInstance()).cleanFile(0);
+            switchDataType.setChecked(true);
+        }
+        updateTextArea(view);
     }
 
-    public void exit(View view){
-        finish();
-    }
 
-    @Override
+     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_text_save, menu);

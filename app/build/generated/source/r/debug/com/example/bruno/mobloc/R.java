@@ -15,22 +15,23 @@ public final class R {
         public static final int activity_vertical_margin=0x7f050001;
     }
     public static final class id {
-        public static final int action_settings=0x7f080010;
-        public static final int addButton=0x7f08000f;
+        public static final int action_settings=0x7f080011;
+        public static final int addButton=0x7f080010;
         public static final int buttonSensor=0x7f080003;
         public static final int chart_container=0x7f080007;
-        public static final int clearBtn=0x7f08000b;
-        public static final int descTextEdit=0x7f08000e;
-        public static final int descriptionTextView=0x7f08000d;
-        public static final int exitBtn=0x7f08000c;
+        public static final int clearBtn=0x7f08000d;
+        public static final int descTextEdit=0x7f08000f;
+        public static final int descriptionTextView=0x7f08000e;
         public static final int mainTextView=0x7f080000;
+        public static final int mainView=0x7f080008;
         public static final int openButton=0x7f080002;
-        public static final int openTextView=0x7f08000a;
+        public static final int openTextView=0x7f08000b;
         public static final int saveButton=0x7f080001;
         public static final int startBtn=0x7f080004;
         public static final int stopBtn=0x7f080005;
-        public static final int textAreaScroller=0x7f080009;
-        public static final int textView=0x7f080008;
+        public static final int switchData=0x7f08000c;
+        public static final int textAreaScroller=0x7f08000a;
+        public static final int textView=0x7f080009;
         public static final int uploadButton=0x7f080006;
     }
     public static final class layout {

@@ -30,7 +30,7 @@ public class SaveTextActivity extends Activity {
 
     public void saveText(View view){
         (Data.getInstance()).writeString(editText.getText().toString());
-        editText.setText("g");
+        editText.setText("");
         Log.w("Text added...", (editText.getText().toString()) );
     }
 

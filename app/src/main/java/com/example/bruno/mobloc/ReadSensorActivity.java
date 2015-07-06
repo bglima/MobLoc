@@ -26,6 +26,7 @@ import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 
 public class ReadSensorActivity extends Activity implements SensorEventListener, View.OnClickListener {
@@ -132,6 +133,7 @@ public class ReadSensorActivity extends Activity implements SensorEventListener,
 
                 break;
             case R.id.uploadButton:
+                Data.getInstance().writeMagData(sensorData);
                 // upload data to server
                 break;
 
@@ -144,7 +146,11 @@ public class ReadSensorActivity extends Activity implements SensorEventListener,
     @Override
     public void onSensorChanged(SensorEvent event) {
         if (started) {
+            MagnetData newData = new MagnetData(java.text.DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime()),
+                                    event.values[0], event.values[1], event.values[2]);
+
             lineGraph.addNewPoints(event.values[0], event.values[1], event.values[2]);
+            sensorData.add(newData);
             view.repaint();
         }
     }

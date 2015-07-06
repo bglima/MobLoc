@@ -4,7 +4,9 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:id="@+id/mainView"
+    >
 
     <TextView
         android:layout_width="284dp"
@@ -36,6 +38,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </ScrollView>
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TEXT/SENSOR"
+        android:id="@+id/switchData"
+        android:layout_gravity="center_horizontal"
+        android:onClick="updateTextArea"
+        android:clickable="true"
+        android:enabled="true" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -44,11 +57,4 @@
         android:layout_gravity="center_horizontal"
         android:onClick="clearLog"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Exit"
-        android:id="@+id/exitBtn"
-        android:layout_gravity="center_horizontal"
-        android:onClick="exit"/>
 </LinearLayout>
