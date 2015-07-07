@@ -22,4 +22,10 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile files('E:/Git/MobLoc/libs/achartengine-1.1.0.jar')
+    compile files('E:/Git/MobLoc/libs/jblas-1.2.4.jar')
+    compile files('E:/Git/MobLoc/libs/EJML-core-0.27.jar')
+    compile files('E:/Git/MobLoc/libs/EJML-dense64-0.27.jar')
+    compile files('E:/Git/MobLoc/libs/EJML-denseC64-0.27.jar')
+    compile files('E:/Git/MobLoc/libs/EJML-equation-0.27.jar')
+    compile files('E:/Git/MobLoc/libs/EJML-simple-0.27.jar')
 }

@@ -12,6 +12,9 @@ import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import org.ejml.simple.SimpleMatrix;
+
+
 /**
  * Created by Bruno on 6/30/2015.
  */

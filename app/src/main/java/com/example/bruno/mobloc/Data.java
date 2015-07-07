@@ -8,8 +8,10 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Created by Bruno on 6/26/2015.
@@ -32,7 +34,7 @@ public class Data extends Activity{
     public void writeString(String s){
         try {
             FileWriter writer = new FileWriter(path, true);
-            writer.append(java.text.DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime()));
+            writer.append( DateFormat.getDateTimeInstance().format(new Date()));
             writer.append("  ->  " + s + "\n");
             writer.flush();
             writer.close();
@@ -45,7 +47,7 @@ public class Data extends Activity{
         try {
             FileWriter writer = new FileWriter(sensorPath, true);
 
-            writer.append(java.text.DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime()));
+            writer.append(java.text.DateFormat.getDateTimeInstance().format( new Date()));
             writer.append("  -> Starting to show sensor readings below... " + "\n");
             for(MagnetData temp : array) {
                 writer.append(temp.getTimeStamp());
@@ -55,6 +57,7 @@ public class Data extends Activity{
 
             writer.flush();
             writer.close();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -117,6 +120,5 @@ public class Data extends Activity{
         }
         return deleted;
     }
-
 
 }

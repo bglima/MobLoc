@@ -86,6 +86,12 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 22 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" exported="" name="EJML-equation-0.27" level="project" />
+    <orderEntry type="library" exported="" name="EJML-dense64-0.27" level="project" />
+    <orderEntry type="library" exported="" name="EJML-denseC64-0.27" level="project" />
     <orderEntry type="library" exported="" name="achartengine-1.1.0" level="project" />
+    <orderEntry type="library" exported="" name="EJML-simple-0.27" level="project" />
+    <orderEntry type="library" exported="" name="EJML-core-0.27" level="project" />
+    <orderEntry type="library" exported="" name="jblas-1.2.4" level="project" />
   </component>
 </module>
